@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>iStore — Premium Apple Products</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a class="logo" onclick="showPage('shop')" href="#">
+      <span class="apple-logo">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M16.36 1.43c-.92.06-2.02.63-2.68 1.38-.6.68-1.09 1.76-.91 2.8 1 .08 2.05-.51 2.69-1.26.63-.73 1.1-1.78.9-2.92z"/>
+    <path d="M20.45 17.06c-.38.88-.56 1.27-1.05 2.04-.68 1.04-1.63 2.34-2.81 2.35-1.05.01-1.32-.68-2.74-.67-1.42.01-1.72.68-2.77.67-1.18-.01-2.08-1.18-2.76-2.22-1.89-2.9-2.09-6.3-.92-8.11.83-1.28 2.14-2.03 3.37-2.03 1.25 0 2.04.69 3.08.69 1 0 1.61-.69 3.05-.69 1.09 0 2.24.59 3.06 1.61-2.69 1.47-2.25 5.31.49 6.36z"/>
+  </svg>
+</span>
+      <div>
+        iStore<br>
+        <span class="tag">Official Reseller</span>
+      </div>
+    </a>
+    <div class="nav-right">
+      <button class="nav-btn" onclick="showPage('shop')">Shop</button>
+      <button class="nav-btn" id="cart-btn" onclick="showPage('cart')">
+        🛒 Cart <span id="cart-badge">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════ SHOP PAGE ══════════════ -->
+<div class="page active" id="page-shop">
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="eyebrow">✦ Authentic Apple Products · Fast Delivery · Secure Payment</div>
+    <h1>The best of Apple.<br><em>Delivered to you.</em></h1>
+    <p>iPhone, iPad, MacBook & Accessories — all genuine, all in stock, all shipped to your door.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="document.getElementById('shop-wrap').scrollIntoView({behavior:'smooth'})">Shop Now ↓</button>
+      <button class="btn-secondary" onclick="showPage('cart')">View Cart 🛒</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Genuine Products</div></div>
+      <div class="stat"><div class="stat-num">2–3</div><div class="stat-label">Day Delivery</div></div>
+      <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Customer Support</div></div>
+      <div class="stat"><div class="stat-num">🔒</div><div class="stat-label">Secure via Paystack</div></div>
+    </div>
+  </section>
+
+  <!-- Shop -->
+  <div id="shop-wrap">
+    <div class="section-header">
+      <h2 class="section-title">All Products</h2>
+      <div class="search-box">
+        <input type="text" id="search-input" placeholder="Search products…" oninput="renderProducts()">
+      </div>
+    </div>
+
+    <div class="cat-strip" id="cat-strip"></div>
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+</div>
+
+<!-- ══════════════ CART PAGE ══════════════ -->
+<div class="page" id="page-cart">
+  <div id="cart-wrap">
+    <div class="section-header">
+      <h2 class="section-title">Your Cart</h2>
+      <button class="nav-btn" onclick="showPage('shop')">← Continue Shopping</button>
+    </div>
+    <div id="cart-content"></div>
+  </div>
+</div>
+
+<!-- ══════════════ CHECKOUT PAGE ══════════════ -->
+<div class="page" id="page-checkout">
+  <div id="checkout-wrap">
+    <div class="section-header">
+      <h2 class="section-title">Checkout</h2>
+      <button class="nav-btn" onclick="showPage('cart')">← Back to Cart</button>
+    </div>
+    <p style="color:var(--mid);margin-bottom:36px;font-size:15px;">No account needed — fill in your details, pay securely, and we'll deliver to you.</p>
+
+    <div class="checkout-grid">
+      <!-- LEFT: Forms -->
+      <div>
+        <div class="form-card">
+          <div class="form-section-title">
+            <span class="step-circle">1</span> Personal Information
+          </div>
+          <div class="form-row" style="margin-bottom:14px">
+            <div class="field">
+              <label>First Name *</label>
+              <input type="text" id="f-firstname" placeholder="John">
+              <span class="err-msg" id="err-firstname"></span>
+            </div>
+            <div class="field">
+              <label>Last Name *</label>
+              <input type="text" id="f-lastname" placeholder="Doe">
+              <span class="err-msg" id="err-lastname"></span>
+            </div>
+          </div>
+          <div class="form-row full" style="margin-bottom:14px">
+            <div class="field">
+              <label>Email Address *</label>
+              <input type="email" id="f-email" placeholder="john@example.com">
+              <span class="err-msg" id="err-email"></span>
+            </div>
+          </div>
+          <div class="form-row full">
+            <div class="field">
+              <label>Phone Number *</label>
+              <input type="tel" id="f-phone" placeholder="+234 800 000 0000">
+              <span class="err-msg" id="err-phone"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-section-title">
+            <span class="step-circle">2</span> Delivery Address
+          </div>
+          <div class="form-row full" style="margin-bottom:14px">
+            <div class="field">
+              <label>Street Address *</label>
+              <input type="text" id="f-address" placeholder="12 Admiralty Way, Lekki Phase 1">
+              <span class="err-msg" id="err-address"></span>
+            </div>
+          </div>
+          <div class="form-row" style="margin-bottom:14px">
+            <div class="field">
+              <label>City *</label>
+              <input type="text" id="f-city" placeholder="Lagos">
+              <span class="err-msg" id="err-city"></span>
+            </div>
+            <div class="field">
+              <label>State *</label>
+              <input type="text" id="f-state" placeholder="Lagos State">
+              <span class="err-msg" id="err-state"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label>Postal Code</label>
+              <input type="text" id="f-zip" placeholder="100001">
+            </div>
+            <div class="field">
+              <label>Country</label>
+              <input type="text" id="f-country" value="Nigeria" readonly style="background:#f5f5f5;color:#888">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-section-title">
+            <span class="step-circle">3</span> Order Notes <span style="font-size:12px;color:var(--mid);font-weight:400">(optional)</span>
+          </div>
+          <div class="field">
+            <label>Special Instructions</label>
+            <input type="text" id="f-notes" placeholder="E.g. leave at gate, call on arrival…">
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Summary -->
+      <div>
+        <div class="summary-box">
+          <div class="summary-title">Order Summary</div>
+          <div class="summary-items" id="co-summary-items"></div>
+          <div class="summary-divider"></div>
+          <div class="summary-row label"><span>Subtotal</span><span id="co-subtotal">₦0</span></div>
+          <div class="summary-row label"><span>Delivery Fee</span><span id="co-delivery">₦5,000</span></div>
+          <div class="summary-divider"></div>
+          <div class="summary-row">
+            <span class="summary-total">Total</span>
+            <span class="summary-total-price" id="co-total">₦0</span>
+          </div>
+          <button class="pay-btn" id="pay-now-btn" onclick="handlePay()">
+            Pay with Paystack 🔐
+          </button>
+          <div class="paystack-note">
+            🔒 Secured & encrypted by Paystack
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ RECEIPT PAGE ══════════════ -->
+<div class="page" id="page-receipt">
+  <div id="receipt-wrap">
+    <div class="receipt-card" id="receipt-card">
+      <!-- Filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo" style="cursor:default">
+          <span class="apple-logo">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M16.36 1.43c-.92.06-2.02.63-2.68 1.38-.6.68-1.09 1.76-.91 2.8 1 .08 2.05-.51 2.69-1.26.63-.73 1.1-1.78.9-2.92z"/>
+    <path d="M20.45 17.06c-.38.88-.56 1.27-1.05 2.04-.68 1.04-1.63 2.34-2.81 2.35-1.05.01-1.32-.68-2.74-.67-1.42.01-1.72.68-2.77.67-1.18-.01-2.08-1.18-2.76-2.22-1.89-2.9-2.09-6.3-.92-8.11.83-1.28 2.14-2.03 3.37-2.03 1.25 0 2.04.69 3.08.69 1 0 1.61-.69 3.05-.69 1.09 0 2.24.59 3.06 1.61-2.69 1.47-2.25 5.31.49 6.36z"/>
+  </svg>
+</span>
+          <div>iStore<br><span class="tag">Official Reseller</span></div>
+        </div>
+        <p>Nigeria's most trusted Apple reseller. Genuine products, fast delivery nationwide, and secure online payment.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Products</h5>
+        <a href="#" onclick="filterCat('iPhone');showPage('shop')">iPhone</a>
+        <a href="#" onclick="filterCat('iPad');showPage('shop')">iPad</a>
+        <a href="#" onclick="filterCat('MacBook');showPage('shop')">MacBook</a>
+        <a href="#" onclick="filterCat('Accessories');showPage('shop')">Accessories</a>
+      </div>
+      <div class="footer-col">
+        <h5>Support</h5>
+        <a href="#">Track Order</a>
+        <a href="#">Returns Policy</a>
+        <a href="#">Warranty</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <a href="mailto:hello@istore.ng">hello@istore.ng</a>
+        <a href="tel:+2348000000000">+234 800 000 0000</a>
+        <a href="#">WhatsApp Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 iStore Nigeria. All rights reserved.</span>
+      <div class="trust-badges">
+        <span class="trust-badge">✅ Genuine Products</span>
+        <span class="trust-badge">🔒 Secure Payment</span>
+        <span class="trust-badge">🚚 Fast Delivery</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
