@@ -3,24 +3,24 @@ const PAYSTACK_KEY = 'pk_test_YOUR_PAYSTACK_PUBLIC_KEY_HERE';
 
 // PRODUCTS (with images)
 const PRODUCTS = [
-  { id:1, cat:'iPhone', name:'iPhone 15 Pro Max', price:1599000, stock:12, badge:'pro', storage:'256GB', img:'images/iphone-15-pro-max.png', specs:['6.7" Super Retina XDR','A17 Pro chip','48MP camera system','Titanium design'] },
-  { id:2, cat:'iPhone', name:'iPhone 15 Pro', price:1399000, stock:8, badge:'pro', storage:'128GB', img:'images/iphone-15-pro.png', specs:['6.1" Super Retina XDR','A17 Pro chip','USB-C connector','Action Button'] },
-  { id:3, cat:'iPhone', name:'iPhone 15', price:999000, stock:20, badge:null, storage:'128GB', img:'images/iphone-15.png', specs:['6.1" Super Retina XDR','A16 Bionic chip','Dynamic Island','48MP main camera'] },
-  { id:4, cat:'iPhone', name:'iPhone 14', price:799000, stock:15, badge:'deal', storage:'128GB', img:'images/iphone-14.png', specs:['6.1" Super Retina XDR','A15 Bionic chip','Crash Detection','Emergency SOS'] },
-  { id:5, cat:'iPhone', name:'iPhone 13', price:599000, stock:10, badge:'deal', storage:'128GB', img:'images/iphone-13.png', specs:['6.1" Super Retina XDR','A15 Bionic chip','Cinematic mode','5G capable'] },
+  { id:1, cat:'iPhone', name:'iPhone 15 Pro Max', price:15990, stock:12, badge:'pro', storage:'256GB', img:'images/iphone-15-pro-max.png', specs:['6.7" Super Retina XDR','A17 Pro chip','48MP camera system','Titanium design'] },
+  { id:2, cat:'iPhone', name:'iPhone 15 Pro', price:13990, stock:8, badge:'pro', storage:'128GB', img:'images/iphone-15-pro.png', specs:['6.1" Super Retina XDR','A17 Pro chip','USB-C connector','Action Button'] },
+  { id:3, cat:'iPhone', name:'iPhone 15', price:9990, stock:20, badge:null, storage:'128GB', img:'images/iphone-15.png', specs:['6.1" Super Retina XDR','A16 Bionic chip','Dynamic Island','48MP main camera'] },
+  { id:4, cat:'iPhone', name:'iPhone 14', price:7990, stock:15, badge:'deal', storage:'128GB', img:'images/iphone-14.png', specs:['6.1" Super Retina XDR','A15 Bionic chip','Crash Detection','Emergency SOS'] },
+  { id:5, cat:'iPhone', name:'iPhone 13', price:5990, stock:10, badge:'deal', storage:'128GB', img:'images/iphone-13.png', specs:['6.1" Super Retina XDR','A15 Bionic chip','Cinematic mode','5G capable'] },
 
-  { id:6, cat:'iPad', name:'iPad Pro 12.9"', price:1799000, stock:6, badge:'pro', storage:'256GB', img:'images/ipad-pro.png', specs:['12.9" Liquid Retina XDR','M2 chip'] },
+  { id:6, cat:'iPad', name:'iPad Pro 12.9"', price:17990, stock:6, badge:'pro', storage:'256GB', img:'images/ipad-pro.png', specs:['12.9" Liquid Retina XDR','M2 chip'] },
 
-  { id:7, cat:'MacBook', name:'MacBook Pro 16"', price:3999000, stock:4, badge:'pro', storage:'512GB SSD', img:'images/macbook-pro.png', specs:['16.2" Liquid Retina XDR','M3 Pro chip'] },
+  { id:7, cat:'MacBook', name:'MacBook Pro 16"', price:39990, stock:4, badge:'pro', storage:'512GB SSD', img:'images/macbook-pro.png', specs:['16.2" Liquid Retina XDR','M3 Pro chip'] },
 
-  { id:8, cat:'Accessories', name:'AirPods Pro', price:249000, stock:30, badge:null, storage:null, img:'images/airpods.png', specs:['Noise Cancellation','MagSafe'] }
+  { id:8, cat:'Accessories', name:'AirPods Pro', price:2490, stock:30, badge:null, storage:null, img:'images/airpods.png', specs:['Noise Cancellation','MagSafe'] }
 ];
 
 const CATEGORIES = ['All','iPhone','iPad','MacBook','Accessories'];
 let activeCategory = 'All';
 let cart = {};
 
-const fmt = n => '₦' + n.toLocaleString();
+const fmt = n => '₵' + n.toLocaleString();
 
 // PAGE SWITCH
 function showPage(name) {
